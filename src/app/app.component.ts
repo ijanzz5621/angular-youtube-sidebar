@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,4 +24,8 @@ import { CustomSidenavComponent } from './components/custom-sidenav/custom-siden
 })
 export class AppComponent {
   title = 'Angular Youtube Sidebar';
+
+  collapsed = signal(false)
+  sidenavWidth = computed(() =>  this.collapsed() ? '65px' : '250px')
+
 }
