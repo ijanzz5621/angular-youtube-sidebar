@@ -1,7 +1,8 @@
 
 mat-toolbar {
     position:relative;
-    z-index: 5;
+    z-index: 5;   
+    background-color: var(--primary-color); 
 }
 
 mat-sidenav-container {
@@ -10,4 +11,13 @@ mat-sidenav-container {
 
 .content {
     padding: 24px;
+}
+
+mat-sidenav, mat-sidenav-content {
+    transition: all 500ms ease-in-out;
+}
+
+.toolbar-title {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
