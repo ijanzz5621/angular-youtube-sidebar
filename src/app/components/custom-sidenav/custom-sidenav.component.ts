@@ -4,11 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MenuItemComponent } from '../menu-item/menu-item.component';
 
 export type MenuItem = {
   icon: string;
   label: string;
   route?: string;
+  subItems?: MenuItem[];
 }
 
 @Component({
@@ -19,7 +21,8 @@ export type MenuItem = {
     MatIconModule,
     NgFor,
     NgIf,
-    RouterModule
+    RouterModule,
+    MenuItemComponent
   ],
   templateUrl: './custom-sidenav.component.html',
   styleUrl: './custom-sidenav.component.css'
@@ -35,7 +38,24 @@ export class CustomSidenavComponent {
       {
         icon: 'video_library',
         label: 'Content',
-        route: 'content'
+        route: 'content',
+        subItems: [
+          {
+            icon: 'play_circle',
+            label: 'Videos',
+            route: 'videos'
+          },
+          {
+            icon: 'playlist_play',
+            label: 'Playlists',
+            route: 'playlists'
+          },
+          {
+            icon: 'post_add',
+            label: 'Posts',
+            route: 'posts'
+          }          
+        ]
       },
       {
         icon: 'analytics',

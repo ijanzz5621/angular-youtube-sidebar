@@ -11,6 +11,7 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { CommentsComponent } from './pages/comments/comments.component';
 import { ContentComponent } from './pages/content/content.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { VideosComponent } from './pages/content/videos/videos.component';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +23,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatIconModule,
     MatSidenavModule,
     CustomSidenavComponent,
-
     AnalyticsComponent,
-    CommentsComponent,
-    ContentComponent,
-    DashboardComponent
+    CommentsComponent,    
+    DashboardComponent,
+    VideosComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
