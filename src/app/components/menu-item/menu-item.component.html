@@ -28,27 +28,31 @@
         </span>
     }
 
-    <!-- Add menu subitems -->
-    @if (item().subItems && nestedMenuOpen()) {
-        <div @expandContractMenu>
-            @for (subItem of item().subItems; track subItem.label) {
-                <a 
-                    mat-list-item 
-                    class="menu-item"
-                    [class.indented]="!collapsed()"        
-                    [routerLink]="item().route + '/' + subItem.route"
-                    routerLinkActive
-                    #rla="routerLinkActive"
-                    [activated]="rla.isActive"
-                    style="border-radius: 0;"
-                    >
-                    <mat-icon 
-                        [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" 
-                        matListItemIcon>{{subItem.icon}}
-                    </mat-icon>
-                    <span matListItemTitle>{{subItem.label}}</span>
-                </a>
-            }
-        </div>
-    }
 </a>
+
+@if (item().subItems && nestedMenuOpen()) {
+    <div @expandContractMenu>
+        @for (subItem of item().subItems; track subItem.label) {
+            <a 
+                mat-list-item 
+                class="menu-item"
+                [class.indented]="!collapsed()"        
+                [routerLink]="item().route + '/' + subItem.route"
+                routerLinkActive
+                #rla="routerLinkActive"
+                [activated]="rla.isActive"
+                style="border-radius: 0;"
+                >
+                <mat-icon 
+                    [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" 
+                    matListItemIcon>{{subItem.icon}}
+                </mat-icon>
+                <span matListItemTitle>{{subItem.label}}</span>
+            </a>
+        }
+    </div>
+}
+
+
+
+
