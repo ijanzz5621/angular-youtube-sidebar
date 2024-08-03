@@ -7,3 +7,23 @@ body {
 
     --primary-color: #38b09d;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #38b09d;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #38b09d;
+  }

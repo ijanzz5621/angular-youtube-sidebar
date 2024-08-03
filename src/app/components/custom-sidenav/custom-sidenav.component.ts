@@ -1,4 +1,4 @@
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component, computed, input, Input, signal } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -6,12 +6,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
-export type MenuItem = {
-  icon: string;
-  label: string;
-  route?: string;
-  subItems?: MenuItem[];
-}
+import { MenuItem, menuItems } from '../../modules/menu_items';
 
 @Component({
   selector: 'app-custom-sidenav',
@@ -29,46 +24,6 @@ export type MenuItem = {
 })
 export class CustomSidenavComponent {
 
-    menuItems = signal<MenuItem[]>([
-      {
-        icon: 'dashboard',
-        label: 'Dashboard',
-        route: 'dashboard'
-      },
-      {
-        icon: 'video_library',
-        label: 'Content',
-        route: 'content',
-        subItems: [
-          {
-            icon: 'play_circle',
-            label: 'Videos',
-            route: 'videos'
-          },
-          {
-            icon: 'playlist_play',
-            label: 'Playlists',
-            route: 'playlists'
-          },
-          {
-            icon: 'post_add',
-            label: 'Posts',
-            route: 'posts'
-          }          
-        ]
-      },
-      {
-        icon: 'analytics',
-        label: 'Analytics',
-        route: 'analytics'
-      },
-      {
-        icon: 'comment',
-        label: 'Comments',
-        route: 'comments'
-      }
-    ]);
-
     sideNavCollapsed = signal(false)
     @Input() set collapsed(val: boolean) {
       this.sideNavCollapsed.set(val);
@@ -78,5 +33,7 @@ export class CustomSidenavComponent {
       return this.sideNavCollapsed() ? '32' : '100'
     });
     headerText = computed(() => this.sideNavCollapsed() ? true : false);
+
+    menuItems = menuItems;
 
 }

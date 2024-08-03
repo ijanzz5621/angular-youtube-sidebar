@@ -1,46 +1,70 @@
-import { Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ContentComponent } from './pages/content/content.component';
-import { AnalyticsComponent } from './pages/analytics/analytics.component';
-import { CommentsComponent } from './pages/comments/comments.component';
-import { VideosComponent } from './pages/content/videos/videos.component';
-import { PlaylistsComponent } from './pages/content/playlists/playlists.component';
-import { PostsComponent } from './pages/content/posts/posts.component';
+import { Route, Routes } from '@angular/router';
+import { menuItems, MenuItem } from './modules/menu_items';
+
+// export const routes: Routes = [
+//     {
+//         path: '',
+//         pathMatch: 'full',
+//         redirectTo: 'dashboard'
+//     },
+//     {
+//         path: 'dashboard',
+//         component: DashboardComponent
+//     },
+//     {
+//         path: 'content',
+//         component: ContentComponent,
+//         children: [
+//             {
+//                 path: 'videos',
+//                 component: VideosComponent,
+//                 children: [
+//                     {
+//                         path: 'new-videos',
+//                         component: NewVideosComponent
+//                     }
+//                 ]
+//             },
+//             {
+//                 path: 'playlists',
+//                 component: PlaylistsComponent
+//             },
+//             {
+//                 path: 'posts',
+//                 component: PostsComponent,
+//                 children: [
+//                     {
+//                         path: 'archieve',
+//                         component: ArchieveComponent
+//                     }
+//                 ]
+//             }
+//         ]
+//     },
+//     {
+//         path: 'analytics',
+//         component: AnalyticsComponent
+//     },
+//     {
+//         path: 'comments',
+//         component: CommentsComponent
+//     }
+// ];
+
+const itemToRoute = (i: MenuItem): Route => {
+    const route: Route = { path: i.route, component: i.component };
+    if (i.subItems) {
+        route.children = i.subItems.map((s) => itemToRoute(s));
+    }
+
+    return route;
+}
 
 export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'dashboard'
+        redirectTo: 'dashboard',
     },
-    {
-        path: 'dashboard',
-        component: DashboardComponent
-    },
-    {
-        path: 'content',
-        component: ContentComponent,
-        children: [
-            {
-                path: 'videos',
-                component: VideosComponent
-            },
-            {
-                path: 'playlists',
-                component: PlaylistsComponent
-            },
-            {
-                path: 'posts',
-                component: PostsComponent
-            }
-        ]
-    },
-    {
-        path: 'analytics',
-        component: AnalyticsComponent
-    },
-    {
-        path: 'comments',
-        component: CommentsComponent
-    }
-];
+    ...menuItems().map((i: MenuItem) => itemToRoute(i))
+]
